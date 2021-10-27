@@ -1,6 +1,6 @@
 import React from 'react'
 
-function index() {
+function NotFoundPage() {
     return (
         <div>
             Not Found Page
@@ -8,4 +8,4 @@ function index() {
     )
 }
 
-export default index
+export default NotFoundPage

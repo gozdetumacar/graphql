@@ -1,8 +1,7 @@
-import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomePage from './pages/HomePage/index';
-import LaunchDetailsPage from './pages/LaunchDetailsPage/index';
-import NotFoundPage from './pages/NotFoundPage/index';
+import HomePage from './pages/HomePage/HomePage';
+import LaunchDetailsPage from './pages/LaunchDetailsPage/LaunchDetailsPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 function App() {
   return (
