@@ -1,6 +1,5 @@
 .detail-container {
     background-color: #F4F5F3;
-    border: 1px red solid;
     padding: 10%;
     margin-top: 6%;
     display: flex;
@@ -31,9 +30,36 @@
     margin: 0 auto; 
 }
 
+@media screen and (max-width: 700px) {
+  .name{
+     font-size: 50px;    
+  }
+}
+
+@media screen and (max-width: 582px) {
+  .name{
+     font-size: 40px;    
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .name{
+     font-size: 30px;    
+  }
+}
+
 .date {
     margin: 0 auto;
     font-size: 20px;
+}
+
+@media screen and (max-width: 360px) {
+  .name{
+     font-size: 20px;    
+  }
+  .date{
+      font-size: 15px;
+  }
 }
 
 .video {

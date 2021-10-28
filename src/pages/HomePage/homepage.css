@@ -11,6 +11,12 @@ body {
     margin-bottom: 40px;
 }
 
+@media screen and (max-width: 310px) {
+  .title{
+    font-size: 25px;
+  }
+}
+
 .img-container {
     display: flex;
     flex-wrap: wrap;
@@ -28,6 +34,18 @@ body {
     display: block;
     transition: .5s ease;
     backface-visibility: hidden;
+}
+
+@media screen and (max-width: 410px) {
+  .img{
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .img{
+    width: 250px;
+  }
 }
 
 .img:hover {

@@ -16,6 +16,12 @@
     opacity: 0.8;
 }
 
+@media screen and (max-width: 294px) {
+  .errorpage{
+     font-size: 30px;    
+  }
+}
+
 .home-link {
     display: flex;
     justify-content: center;

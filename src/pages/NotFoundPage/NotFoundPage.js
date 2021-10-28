@@ -10,7 +10,6 @@ function NotFoundPage() {
             <Link to={"/"} className="home-link">
                 <p>GO HOME</p>
             </Link>
-            
         </div>
     )
 }

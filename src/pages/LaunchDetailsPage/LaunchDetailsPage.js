@@ -34,13 +34,13 @@ const LaunchDetailsPage = () => {
 
   const history = useHistory();
 
-  const [detail, setDetail] = React.useState([]);
+  const [detail, setDetail] = useState([]);
 
   let { id } = useParams();
   var launch_id = id;
 
   React.useEffect(() => {
-      return fetch('https://api.spacex.land/graphql/', {
+      fetch('https://api.spacex.land/graphql/', { 
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,16 +50,15 @@ const LaunchDetailsPage = () => {
           query: DETAILS,
           variables: {launch_id}
         }),
-      })
+      }) 
       .then(response => response.json())
       .then(data => setDetail(data.data.launch))
        
   }, [launch_id]);
-  
+
   var dateutc = String(detail.launch_date_utc).split('T');
-  
+
   return (
-    
     <div>
       <button
         onClick={() => history.goBack()}
@@ -70,16 +69,19 @@ const LaunchDetailsPage = () => {
       <div className="detail-container">
       <p className="name">{detail.mission_name}</p>
       <p className="date">{dateutc[0]}</p>
-      <p className="video">Video link</p>
       </div>
     </div>
-    
-    
 )}
 
 export default LaunchDetailsPage
 
-  {/* Details Page
-          
-       
-        date: {detail.launch_date_utc} */}
+/* 
+  {Object.keys(detail).map((details, index) => (  
+    <img
+      key={index}
+      src={details.links.flickr_images}
+      alt=""
+    >
+    </img>  
+  ))} 
+*/
