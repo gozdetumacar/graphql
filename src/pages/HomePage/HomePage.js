@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import './homepage.css';
+
 
 const LAUNCHES = `
     {
@@ -41,23 +43,20 @@ function HomePage() {
 
     return (
       <div>
-        <h1>Home Page</h1>
-        <Link to ="/details">
-          <button>details</button>
-        </Link>
+        <h1 className="title">SOME SPACEX LAUNCHES</h1>
+        <div className="img-container">
           {launches.map((launch) => (
-            <div key={launch.id} style={{ display: 'flex'}}>
               <Link to ={`/launch/${launch.id}`}>
-              <img
-                src={launch.links.flickr_images}
-                style={{ width: 200 }}
+                <img
+                  key={launch.id}
+                  src={launch.links.flickr_images}
+                  className="img"
                   alt=""
               >
               </img>
               </Link>
-            </div>
           ))}
-        
+        </div>
       </div>
     )
 }

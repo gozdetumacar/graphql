@@ -1,0 +1,41 @@
+.detail-container {
+    background-color: #F4F5F3;
+    border: 1px red solid;
+    padding: 10%;
+    margin-top: 6%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.goback {
+    padding: 1%;
+    background-color: #fff;
+    border: 1px #fff solid;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.goback:hover{
+    cursor:pointer
+}
+
+.icon {
+    font-size: 25px;
+    margin-right: 5px;
+}
+
+.name {
+    font-size: 60px;
+    margin: 0 auto; 
+}
+
+.date {
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.video {
+    margin: 0 auto;
+}

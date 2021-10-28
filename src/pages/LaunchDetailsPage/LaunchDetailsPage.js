@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router'
+import './detailspage.css'
+import { useHistory } from "react-router-dom";
+import {AiOutlineArrowLeft} from "react-icons/ai";
+
 
 const DETAILS = `
 query LaunchDetails($launch_id: ID!) {
@@ -28,11 +32,15 @@ query LaunchDetails($launch_id: ID!) {
 
 const LaunchDetailsPage = () => {
 
+  const history = useHistory();
+
+  const [detail, setDetail] = React.useState([]);
+
   let { id } = useParams();
   var launch_id = id;
 
-    React.useEffect(() => {
-      fetch('https://api.spacex.land/graphql/', {
+  React.useEffect(() => {
+      return fetch('https://api.spacex.land/graphql/', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,16 +52,34 @@ const LaunchDetailsPage = () => {
         }),
       })
       .then(response => response.json())
-      .then(data => console.log(data))
-    }, [launch_id]);
-
-    return (
-        <div>
-          Details Page
-          ID: {id}
-          Launch_id: {launch_id}
-        </div>
-    )
-}
+      .then(data => setDetail(data.data.launch))
+       
+  }, [launch_id]);
+  
+  var dateutc = String(detail.launch_date_utc).split('T');
+  
+  return (
+    
+    <div>
+      <button
+        onClick={() => history.goBack()}
+        className="goback"
+      >
+        <AiOutlineArrowLeft className="icon"/> Home Page
+      </button>
+      <div className="detail-container">
+      <p className="name">{detail.mission_name}</p>
+      <p className="date">{dateutc[0]}</p>
+      <p className="video">Video link</p>
+      </div>
+    </div>
+    
+    
+)}
 
 export default LaunchDetailsPage
+
+  {/* Details Page
+          
+       
+        date: {detail.launch_date_utc} */}
