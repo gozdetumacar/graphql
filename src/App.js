@@ -10,7 +10,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={HomePage}>
           </Route>
-          <Route path="/details" component={LaunchDetailsPage}>
+          <Route path="/launch/:id" component={LaunchDetailsPage}>
            </Route>
           <Route component={NotFoundPage}>
           </Route>

@@ -34,7 +34,7 @@ function HomePage() {
       fetch('https://api.spacex.land/graphql/', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({query: LAUNCHES})
+        body: JSON.stringify({ query: LAUNCHES })
       }).then(response => response.json())
       .then(data => setLaunches(data.data.launchesPast))
     }, []);
@@ -42,17 +42,19 @@ function HomePage() {
     return (
       <div>
         <h1>Home Page</h1>
-        <Link to="/details">
+        <Link to ="/details">
           <button>details</button>
         </Link>
-        
           {launches.map((launch) => (
-            <div key={launch.id} style={{display:'flex'}}>
+            <div key={launch.id} style={{ display: 'flex'}}>
+              <Link to ={`/launch/${launch.id}`}>
               <img
                 src={launch.links.flickr_images}
-                style={{ width: 100 }}
-                alt=""
-              ></img>
+                style={{ width: 200 }}
+                  alt=""
+              >
+              </img>
+              </Link>
             </div>
           ))}
         
