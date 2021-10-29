@@ -34,7 +34,9 @@ const LaunchDetailsPage = () => {
 
   const history = useHistory();
 
-  const [detail, setDetail] = useState([]);
+  const [launchdet, setLaunchDet] = useState([]);
+  const [launchimage, setLaunchImage] = useState([])
+  const [launchvideo, setLaunchVideo] = useState([])
 
   let { id } = useParams();
   var launch_id = id;
@@ -51,12 +53,61 @@ const LaunchDetailsPage = () => {
           variables: {launch_id}
         }),
       }) 
+        .then(response => response.json())
+        .then(data => setLaunchDet(data.data.launch))  
+  }, [launch_id]);
+
+  React.useEffect(() => {
+      fetch('https://api.spacex.land/graphql/', { 
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query: DETAILS,
+          variables: {launch_id}
+        }),
+      }) 
       .then(response => response.json())
-      .then(data => setDetail(data.data.launch))
+      .then(data => setLaunchImage(data.data.launch.links.flickr_images))
        
   }, [launch_id]);
 
-  var dateutc = String(detail.launch_date_utc).split('T');
+  React.useEffect(() => {
+        fetch('https://api.spacex.land/graphql/', { 
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            query: DETAILS,
+            variables: {launch_id}
+          }),
+        }) 
+        .then(response => response.json())
+        .then(data => setLaunchVideo(data.data.launch.links.video_link))
+        
+    }, [launch_id]);
+
+  var dateutc = String(launchdet.launch_date_utc).split('T');
+
+  let detailRender;
+  if (launchimage) {
+    detailRender =
+      launchimage.map((launchimage, index) => (  
+        <img
+          key={index}
+          src={launchimage}
+          alt=""
+          className="images"
+        >
+        </img>  
+      ))
+  } else {
+    detailRender = "Loading...";
+  }
 
   return (
     <div>
@@ -66,22 +117,17 @@ const LaunchDetailsPage = () => {
       >
         <AiOutlineArrowLeft className="icon"/> Home Page
       </button>
-      <div className="detail-container">
-      <p className="name">{detail.mission_name}</p>
-      <p className="date">{dateutc[0]}</p>
+      <div className="info">
+        <div className="detail-container">
+        <p className="name">{launchdet.mission_name}</p>
+        <p className="date">{dateutc[0]}</p>
+        <a className="video" href={launchvideo}>Watch here</a> 
+        </div>
+
+        <div className="detailimages">{detailRender}</div>
       </div>
     </div>
 )}
 
 export default LaunchDetailsPage
 
-/* 
-  {Object.keys(detail).map((details, index) => (  
-    <img
-      key={index}
-      src={details.links.flickr_images}
-      alt=""
-    >
-    </img>  
-  ))} 
-*/
